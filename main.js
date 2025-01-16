@@ -42,15 +42,17 @@ function draw() {
   drawBall();
 }
 
+const speed = 50;
+
 // Movement for player paddle
 document.addEventListener('keydown', (e) => {
   if (player == 1) {
-    if (e.key === 'a' && paddle1X > 0) paddle1X -= 20;
-    if (e.key === 'd' && paddle1X < canvas.width - paddleWidth) paddle1X += 20;
+    if (e.key === 'a' && paddle1X > 0) paddle1X -= speed;
+    if (e.key === 'd' && paddle1X < canvas.width - paddleWidth) paddle1X += speed;
     socket.emit('paddleMove', { player: 1, paddleX: paddle1X });
   } else if (player == 2) {
-    if (e.key === 'ArrowLeft' && paddle2X > 0) paddle2X -= 20;
-    if (e.key === 'ArrowRight' && paddle2X < canvas.width - paddleWidth) paddle2X += 20;
+    if (e.key === 'ArrowLeft' && paddle2X > 0) paddle2X -= speed;
+    if (e.key === 'ArrowRight' && paddle2X < canvas.width - paddleWidth) paddle2X += speed;
     socket.emit('paddleMove', { player: 2, paddleX: paddle2X });
   }
 });
